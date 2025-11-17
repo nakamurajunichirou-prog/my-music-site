@@ -1,63 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Music</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-      line-height: 1.6;
-      background-color: #fefefe;
-      color: #111;
-    }
-    h1 {
-      text-align: center;
-    }
-    .track {
-      margin-bottom: 40px;
-    }
-    iframe {
-      display: block;
-      margin: 10px auto;
-    }
-    .description {
-      margin-top: 10px;
-      font-size: 0.95em;
-      color: #333;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>My Music Shop</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <h1>My Music</h1>
-  <p>ここは自分の音楽をまとめるページです。制作メモやコメントも書けます。</p>
+<h1>My Music Shop</h1>
 
-  <div class="track">
-    <h2>曲タイトル 1</h2>
-    <!-- Bandcamp 埋め込みプレイヤー -->
-    <iframe style="border:0;width:350px;height:470px;" 
-            src="https://bandcamp.com/EmbeddedPlayer/album=ALBUM_ID/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/" 
-            seamless>
-      <a href="https://YOURBANDCAMP.bandcamp.com/album/ALBUM_ID">曲タイトル 1</a>
-    </iframe>
-    <div class="description">
-      曲の説明や制作メモを書きます。  
-      ここにコメントや制作ノートも追加できます。
-    </div>
-  </div>
+<!-- ランダム1曲ピックアップ -->
+<div id="featured"></div>
 
-  <!-- 追加の曲も同じ形式で繰り返す -->
-  <!--
-  <div class="track">
-    <h2>曲タイトル 2</h2>
-    <iframe ...></iframe>
-    <div class="description">制作メモなど</div>
-  </div>
-  -->
+<h2>All Releases</h2>
+<div class="grid">
+  <a class="card" href="song1.html">
+    <img src="images/jacket1.jpg" alt="Song1">
+    <p>Song Title 1</p>
+  </a>
+
+  <a class="card" href="song2.html">
+    <img src="images/jacket2.jpg" alt="Song2">
+    <p>Song Title 2</p>
+  </a>
+</div>
+
+<script>
+// ランダムピックアップ
+const songs = [
+  {title: "Song Title 1", img: "images/jacket1.jpg", link: "song1.html"},
+  {title: "Song Title 2", img: "images/jacket2.jpg", link: "song2.html"}
+];
+
+const pick = songs[Math.floor(Math.random() * songs.length)];
+
+document.getElementById("featured").innerHTML = `
+  <h2>Pick Up</h2>
+  <a href="${pick.link}">
+    <img src="${pick.img}" style="width:200px">
+    <p>${pick.title}</p>
+  </a>
+`;
+</script>
 
 </body>
 </html>
