@@ -2,14 +2,15 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>music</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Music Shop</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<h1>Music</h1>
+<h1>My Music Shop</h1>
 
-<!-- ランダム1曲ピックアップ -->
+<!-- ランダムピックアップ -->
 <div id="featured"></div>
 
 <h2>All Releases</h2>
@@ -37,7 +38,7 @@ const pick = songs[Math.floor(Math.random() * songs.length)];
 document.getElementById("featured").innerHTML = `
   <h2>Pick Up</h2>
   <a href="${pick.link}">
-    <img src="${pick.img}" style="width:200px">
+    <img src="${pick.img}" alt="${pick.title}">
     <p>${pick.title}</p>
   </a>
 `;
