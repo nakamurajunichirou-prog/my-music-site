@@ -1,7 +1,7 @@
-  /* 全体の基本設定 */
+/* 全体の基本設定 */
 body {
   font-family: Arial, sans-serif;
-  background-color: #121212; 
+  background-color: #121212;
   color: #e0e0e0;
   margin: 0;
   padding: 10px;
@@ -27,22 +27,23 @@ h2 {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px; /* 隙間を小さくして横2列が画面いっぱいに */
   justify-content: center;
 }
 
-/* カード表示 */
+/* カード表示（ジャケット） */
 .card {
   display: block;
   text-align: center;
   text-decoration: none;
   color: #e0e0e0;
-  width: 45%;       /* スマホは2列表示、狭い画面は1列に */
-  max-width: 180px;
+  width: 48%;        /* 横2列でほぼ画面いっぱい */
+  max-width: none;
+  margin-bottom: 10px;
 }
 
 .card img {
-  width: 100%;
+  width: 100%;       /* カード幅いっぱいに画像を広げる */
   height: auto;
   border-radius: 8px;
   box-shadow: 0 3px 8px rgba(255,255,255,0.1);
@@ -79,11 +80,11 @@ h2 {
   font-size: 1.2rem;
 }
 
-/* メディアクエリ：小さい画面調整 */
+/* メディアクエリ：小型スマホ用 */
 @media (max-width: 400px) {
   h1 { font-size: 2rem; }
   h2 { font-size: 1.5rem; }
-  .card { width: 90%; max-width: none; } /* 1列表示 */
+  .card { width: 100%; }  /* 1列にしてタップしやすく */
   #featured img { max-width: 90%; }
   body { padding: 5px; }
 }
