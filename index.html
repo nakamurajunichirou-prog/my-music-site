@@ -1,124 +1,103 @@
-<!DOCTYPE html><html lang="ja">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Random Player</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #111;
-      color: #fafafa;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }.player-section {
-  text-align: center;
-  padding: 20px;
-}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Music</title>
+<style>
+  body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f8f8f8;
+  }
 
-.cover {
-  width: 260px;
-  height: 260px;
-  object-fit: cover;
-  border-radius: 6px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-}
+  .player-container {
+    text-align: center;
+    margin-bottom: 40px;
+  }
 
-.title {
-  margin-top: 12px;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
+  .cover-img {
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin-bottom: 10px;
+  }
 
-iframe {
-  margin-top: 12px;
-  width: 100%;
-  max-width: 360px;
-  height: 120px;
-  border: 0;
-}
+  h2 {
+    margin: 10px 0;
+    font-size: 22px;
+  }
 
-.next-btn {
-  margin-top: 15px;
-  padding: 10px 22px;
-  background: #333;
-  border: 1px solid #555;
-  color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+  }
 
-.grid {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 12px;
-  width: 90%;
-  max-width: 800px;
-  padding-bottom: 40px;
-}
+  .grid-item {
+    cursor: pointer;
+    text-align: center;
+  }
 
-.grid-item {
-  text-align: center;
-}
+  .grid-item img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
 
-.grid-cover {
-  width: 100%;
-  border-radius: 4px;
-  object-fit: cover;
-}
+  .grid-item-title {
+    margin-top: 8px;
+    font-size: 14px;
+  }
 
-  </style>
+  iframe {
+    width: 350px;
+    height: 470px;
+    border: 0;
+    margin-top: 20px;
+  }
+</style>
 </head>
-<body>  <div class="player-section">
-    <img id="cover" class="cover" src="" alt="cover" />
-    <div id="title" class="title">TITLE</div>
-    <iframe id="bcplayer" src=""></iframe>
-    <button class="next-btn" onclick="playRandom()">NEXT</button>
-  </div>  <div class="grid" id="grid"></div>  <script>
-    // ▼ 曲データ一覧（ Bandcamp埋め込みURL・ジャケットURL・曲名・個別ページURL ）
-    const tracks = [
-      {
-        title: "Track 1",
-        cover: "cover1.jpg",
-        embed: "https://bandcamp.com/EmbeddedPlayer/track=XXXX/size=large/bgcol=333333/linkcol=ffffff/transparent=true/",
-        page: "songs/track1.html"
-      },
-      {
-        title: "Track 2",
-        cover: "cover2.jpg",
-        embed: "https://bandcamp.com/EmbeddedPlayer/track=YYYY/size=large/bgcol=333333/linkcol=ffffff/transparent=true/",
-        page: "songs/track2.html"
-      }
-      // 追加可
-    ];
 
-    function playRandom() {
-      const t = tracks[Math.floor(Math.random() * tracks.length)];
-      document.getElementById("cover").src = t.cover;
-      document.getElementById("title").textContent = t.title;
-      document.getElementById("bcplayer").src = t.embed;
+<body>
+<div class="player-container">
+  <img id="main-cover" class="cover-img" src="" alt="cover" />
+  <h2 id="main-title"></h2>
+  <iframe id="main-player" seamless></iframe>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+fetch("songs.json")
+  .then(res => res.json())
+  .then(songs => {
+
+    // ランダム1曲
+    const random = songs[Math.floor(Math.random() * songs.length)];
+    setMainTrack(random);
+
+    // グリッド一覧表示
+    const grid = document.getElementById("grid");
+    songs.forEach(song => {
+      const div = document.createElement("div");
+      div.className = "grid-item";
+      div.innerHTML = `
+        <img src="${song.cover}" />
+        <div class="grid-item-title">${song.title}</div>
+      `;
+      div.onclick = () => setMainTrack(song);
+      grid.appendChild(div);
+    });
+
+    function setMainTrack(song) {
+      document.getElementById("main-cover").src = song.cover;
+      document.getElementById("main-title").textContent = song.title;
+      document.getElementById("main-player").src = song.embed;
     }
+  });
+</script>
 
-    function buildGrid() {
-      const grid = document.getElementById("grid");
-      tracks.forEach(t => {
-        const div = document.createElement("div");
-        div.className = "grid-item";
-        div.innerHTML = `
-          <a href="${t.page}">
-            <img class="grid-cover" src="${t.cover}" />
-          </a>
-        `;
-        grid.appendChild(div);
-      });
-    }
-
-    // 初期実行
-    playRandom();
-    buildGrid();
-  </script></body>
+</body>
 </html>
-    
