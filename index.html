@@ -1,104 +1,66 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Music</title>
-
-<style>
-  body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 16px;
-    background: #fafafa;
-  }
-
-  /* ▼ 上のプレーヤーブロック */
-  .player-container {
-    max-width: 800px;
-    margin: 0 auto 40px auto;
-    text-align: center;
-  }
-
-  h2 {
-    margin: 14px 0;
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  /* ▼ Bandcamp iframe をスマホ最適化 */
-  iframe {
-    width: 100%;
-    max-width: 500px;
-    height: 500px;
-    border: 0;
-  }
-
-  /* ▼ グリッド */
-  .grid {
-    display: grid;
-    gap: 14px;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .grid-item {
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .grid-item img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  }
-
-  .grid-item-title {
-    margin-top: 6px;
-    font-size: 13px;
-  }
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>the prakriti | official site</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="player-container">
-  <h2 id="main-title"></h2>
-  <iframe id="main-player" seamless></iframe>
-</div>
+    <!-- ハンバーガー -->
+    <header>
+        <div id="menu-icon">☰</div>
+    </header>
 
-<div class="grid" id="grid"></div>
+    <!-- スライドインメニュー -->
+    <nav id="slide-menu">
+        <div class="close-btn">×</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#tracks">Tracks</a></li>
+            <li><a href="https://bandcamp.com">Bandcamp</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
 
-<script>
-fetch("songs.json")
-  .then(res => res.json())
-  .then(songs => {
+    <!-- ヒーロー -->
+    <section id="hero">
+        <div class="overlay"></div>
+        <div class="hero-text">
+            フィクションの街角から、<br>
+            歪んだ日常の片隅を鳴らす。
+        </div>
+    </section>
 
-    // ランダム1曲
-    const random = songs[Math.floor(Math.random() * songs.length)];
-    setMainTrack(random);
+    <!-- PICK UP -->
+    <section id="pickup">
+        <h2>Pick Up Track</h2>
 
-    // ▼ グリッド生成
-    const grid = document.getElementById("grid");
-    songs.forEach(song => {
-      const div = document.createElement("div");
-      div.className = "grid-item";
-      div.innerHTML = `
-        <img src="${song.cover}" />
-        <div class="grid-item-title">${song.title}</div>
-      `;
-      div.onclick = () => setMainTrack(song);
-      grid.appendChild(div);
-    });
+        <!-- ここに Bandcamp プレイヤーを貼る -->
+        <div id="pickup-player">
+            <!-- 例としてダミー埋め込み -->
+            <iframe style="border: 0; width: 100%; height: 470px;"
+                src="https://bandcamp.com/EmbeddedPlayer/track=0000000/size=large/bgcol=ffffff/linkcol=0687f5/transparent=true/"
+                seamless>
+            </iframe>
+        </div>
 
-    function setMainTrack(song) {
-      document.getElementById("main-title").textContent = song.title;
-      document.getElementById("main-player").src = song.embed;
-    }
-  });
-</script>
+        <a class="link" href="#">→ 曲ページへ</a>
+    </section>
 
+    <!-- TRACKS GRID -->
+    <section id="tracks">
+        <h2>All Tracks</h2>
+        <div class="grid">
+            <!-- ここにジャケットを追加していく -->
+            <a href="song1.html"><img src="jacket1.jpg" class="cover"></a>
+            <a href="song2.html"><img src="jacket2.jpg" class="cover"></a>
+            <a href="song3.html"><img src="jacket3.jpg" class="cover"></a>
+            <a href="song4.html"><img src="jacket4.jpg" class="cover"></a>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
