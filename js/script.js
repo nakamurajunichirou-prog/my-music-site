@@ -62,13 +62,15 @@ picked.forEach((song, i) => {
   const item = document.createElement("a");
   item.href = song.link;
   item.className = `pickup-item ${direction}`;
+  item.style.textDecoration = "none";  // 下線消す
+  item.style.color = "inherit";        // 黒文字を引き継ぐ
+
   item.innerHTML = `
     <img src="${song.jacket}">
     <div class="pickup-text">
       <p>${song.quote1}</p>
       <p>${song.quote2}</p>
-      <div class="pickup-from">${direction === "pickup-left" ? "from " + song.title : ""}</div>
-      <div class="pickup-from" style="text-align:right;">${direction === "pickup-right" ? "from " + song.title : ""}</div>
+      <div class="pickup-from">from ${song.title}</div>
     </div>
   `;
 
