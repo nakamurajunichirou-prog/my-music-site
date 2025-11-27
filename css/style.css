@@ -103,6 +103,8 @@ header {
 
 /* ========== PICKUP SECTION ========== */
 #pickup {
+  background: #fff;      /* ← 白背景 */
+  color: #000;           /* ← 全体を黒文字に */
   padding: 3rem 1.5rem;
   max-width: 1000px;
   margin: auto;
@@ -111,43 +113,17 @@ header {
 #pickup h2 {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
-}
-
-/* ピックアップカードの共通部分 */
-.pickup-item {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  margin-bottom: 2.5rem;
-}
-
-/* 交互レイアウト用 */
-.pickup-left {
-  flex-direction: row;
-}
-
-.pickup-right {
-  flex-direction: row-reverse;
-}
-
-.pickup-item img {
-  width: 38%;
-  max-width: 220px;
-  border-radius: 4px;
-}
-
-.pickup-text {
-  width: 60%;
+  color: #000;           /* ← 見出しも黒 */
 }
 
 .pickup-text p {
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
+  color: #000;           /* ← 歌詞引用 */
 }
 
 .pickup-from {
   font-size: 0.85rem;
   opacity: 0.7;
+  color: #000;           /* ← from 曲名 */
 }
 
 /* ========== TRACK GRID ========== */
