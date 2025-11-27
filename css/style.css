@@ -208,3 +208,29 @@ header {
     text-align: right;
   }
 }
+
+/* スマホで pickup-right のテキストを強制的に右寄せ */
+@media (max-width: 700px) {
+  .pickup-right .pickup-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;  /* ← テキスト全体が右に寄る */
+    text-align: right !important;
+  }
+
+  .pickup-left .pickup-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left !important;
+  }
+}
+
+
+
+
+
+
+
+
+
