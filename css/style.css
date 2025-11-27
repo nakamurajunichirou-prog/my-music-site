@@ -101,45 +101,94 @@ header {
     padding: 0 20px;
 }
 
-/* PICK UP */
+/* ========== PICKUP SECTION ========== */
 #pickup {
-    background: #fff;
-    color: #000;
-    padding: 40px 20px;
-    text-align: center;
+  padding: 3rem 1.5rem;
+  max-width: 1000px;
+  margin: auto;
 }
 
 #pickup h2 {
-    margin-bottom: 20px;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
 }
 
-#pickup .link {
-    display: inline-block;
-    margin-top: 10px;
-    color: #000;
-    text-decoration: underline;
-    font-size: 16px;
+/* ピックアップカードの共通部分 */
+.pickup-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
 }
 
-/* TRACKS GRID */
+/* 交互レイアウト用 */
+.pickup-left {
+  flex-direction: row;
+}
+
+.pickup-right {
+  flex-direction: row-reverse;
+}
+
+.pickup-item img {
+  width: 38%;
+  max-width: 220px;
+  border-radius: 4px;
+}
+
+.pickup-text {
+  width: 60%;
+}
+
+.pickup-text p {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.pickup-from {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* ========== TRACK GRID ========== */
 #tracks {
-    padding: 40px 20px;
-    background: #000;
+  padding: 3rem 1.5rem;
+  max-width: 1000px;
+  margin: auto;
 }
 
 #tracks h2 {
-    text-align: center;
-    margin-bottom: 20px;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
 }
 
-.cover {
+.tracks-grid img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 700px) {
+  #hero h1 {
+    font-size: 2rem;
+  }
+  .pickup-item {
+    flex-direction: column !important;
+  }
+  .pickup-item img {
+    width: 80%;
+  }
+  .pickup-text {
     width: 100%;
-    border-radius: 8px;
-    display: block;
+    text-align: center;
+  }
+  .pickup-from {
+    text-align: center !important;
+  }
 }
