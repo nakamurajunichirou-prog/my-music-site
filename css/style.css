@@ -188,6 +188,60 @@ header {
 .tracks-grid img {
   width: 100%;
 }
+
+/* ===== ABOUT SECTION ===== */
+
+#about {
+  max-width: 900px;
+  margin: 80px auto;
+  padding: 0 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+#about h2 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+/* アーティスト写真 */
+.about-photo img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+}
+
+/* キャッチコピー英語 */
+.about-catch-en {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  opacity: 0.85;
+}
+
+/* キャッチコピー日本語 */
+.about-catch-jp {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+/* クレジット表記 */
+.about-credits {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  opacity: 0.8;
+}
+
+/* パンダロゴ */
+.about-logo img {
+  width: 160px;
+  height: auto;
+  opacity: 0.9;
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 700px) {
   .pickup-item img {
